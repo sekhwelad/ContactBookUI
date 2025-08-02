@@ -1,5 +1,5 @@
 <ng-container *ngIf="profile">
-  <app-profile-card [profile]="profile" />
+  <app-profile-card [profile]="profile" (imageChanged)="onImageImageChange($event)"></app-profile-card>/>
   <div class="pagination">
     <button mat-button (click)="first()">First</button>
     <button mat-button (click)="prev()">Previous</button>

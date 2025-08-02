@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Profile } from './profile.model';
 import { ProfileService } from '../profile.service';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { ProfileCardComponent } from "../profile-card/profile-card.component";
+import { ImageUpload } from './upload-image.model';
 
 @Component({
   selector: 'app-profiles',
@@ -16,7 +17,7 @@ import { ProfileCardComponent } from "../profile-card/profile-card.component";
 export class ProfilesComponent {
   profiles: Profile[] = [];
   currentIndex = 0;
-  // profile!:Profile;
+  @Input() file! :File;
 
   get profile(): Profile {
     return this.profiles[this.currentIndex];
@@ -50,4 +51,21 @@ ngOnInit(): void {
   last() {
     this.currentIndex = this.profiles.length - 1;
   }
+
+  onImageImageChange(upload:ImageUpload): void {
+   const index = this.profiles.findIndex(p => p.email === upload.email);
+
+   this.profileService.uploadImage(upload.file,upload.email).subscribe({
+    next: response =>{
+      if(index !== -1){
+        this.profiles[index] ={
+          ...this.profiles[index],
+          imageUrl: `https://localhost:5000${response.imageUrl}`
+        }
+      }
+    }
+   })
+
+}
+
 }

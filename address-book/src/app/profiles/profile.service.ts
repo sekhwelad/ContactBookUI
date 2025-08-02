@@ -45,4 +45,12 @@ getProfiles(pageSize: number = 3, pageNumber: number = 1): Observable<PagedResul
   getProfileById(id: string): Observable<Profile | undefined> {
     return of(this.profiles.find(p => p.id === id));
   }
+
+  uploadImage(file:File, email:string) : Observable<Profile>{
+    const formData= new FormData();
+    formData.append('file', file) 
+    formData.append('email', email)
+    
+    return this.http.post<Profile>(`${this.apiUrl}/upload`, formData);
+  }
 }

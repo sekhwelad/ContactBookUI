@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Profile } from '../profiles/profile.model';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ImageUpload } from '../profiles/upload-image.model';
 
 
 
@@ -17,12 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 export class ProfileCardComponent implements OnInit{
 
  @Input() profile!: Profile;
+ @Output() imageChanged = new EventEmitter<ImageUpload>();
+
  hovering = false;
 
  ngOnInit(): void {
  }
 
- onImageSelected(event: Event): void {
+ onImageSelected(event: Event,profile:Profile): void {
   const input = event.target as HTMLInputElement;
 
   if (input.files && input.files[0]) {
@@ -33,7 +36,13 @@ export class ProfileCardComponent implements OnInit{
       this.profile.imageUrl = reader.result as string;
     };
     reader.readAsDataURL(file);
+    console.log("The file ", file)
+    const upload :ImageUpload = {
+      file:file,
+      email:profile.email
+    }
 
+    this.imageChanged.emit(upload);
   }
 }
 
