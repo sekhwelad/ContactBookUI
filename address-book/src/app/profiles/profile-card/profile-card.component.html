@@ -1,1 +1,38 @@
-<p>profile-card works!</p>
+<mat-card *ngIf="profile" class="outlined">
+  <div class="profile-card">
+    <div class="profile-image-container" (click)="fileInput.click()">
+      <ng-container *ngIf="profile.imageUrl; else initialsFallback">
+        <img class="profile-picture" [src]="profile.imageUrl" alt="Profile image" (error)="profile.imageUrl === null"
+          (mouseover)="hovering = true" (mouseleave)="hovering = false" />
+      </ng-container>
+
+      <ng-template #initialsFallback>
+        <div class="initials-avatar" (mouseover)="hovering = true" (mouseleave)="hovering = false">
+          {{ getInitials(profile.firstName, profile.lastName) }}
+        </div>
+      </ng-template>
+
+      <div class="overlay" *ngIf="hovering">
+        <span>Upload Picture</span>
+      </div>
+
+      <input type="file" accept="image/*" hidden #fileInput (change)="onImageSelected($event)" />
+    </div>
+
+
+
+    <div class="card-contents">
+      <mat-card-header>
+        <mat-card-title class="card-header">{{ profile.firstName }} {{ profile.lastName }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="card-content">{{ profile.description }}</p>
+        <p class="contact">{{profile.website}} | {{profile.email}} | {{profile.cellphone}}</p>
+        <div class="buttons">
+          <a matButton="elevated" href="https://www.google.com/" target="_blank">Visit Website</a>
+          <button mat-flat-button color="primary">Request CV</button>
+        </div>
+      </mat-card-content>
+    </div>
+  </div>
+</mat-card>

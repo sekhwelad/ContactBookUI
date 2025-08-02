@@ -1,1 +1,10 @@
-<p>profiles works!</p>
+<ng-container *ngIf="profile">
+  <app-profile-card [profile]="profile" />
+  <div class="pagination">
+    <button mat-button (click)="first()">First</button>
+    <button mat-button (click)="prev()">Previous</button>
+    <button mat-button (click)="next()">Next</button>
+    <button mat-button (click)="last()">Last</button>
+  </div>
+</ng-container>
+<div *ngIf="!profile">Empty Address Book, Add Contacts</div>

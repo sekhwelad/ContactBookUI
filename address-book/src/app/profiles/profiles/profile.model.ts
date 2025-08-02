@@ -6,5 +6,5 @@ export interface Profile {
   email: string;
   cellphone: string;
   website: string;
-  imageUrl: string;
+  imageUrl: string | null;
 }

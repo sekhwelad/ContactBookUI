@@ -1,9 +1,12 @@
-import { ApplicationConfig } from '@angular/core';
+import { Routes } from '@angular/router';
 import { provideRouter } from '@angular/router';
+import { ProfilesComponent } from './profiles/profiles/profiles.component';
 
-import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+export const routes: Routes = [
+  { path: '', redirectTo: 'profiles', pathMatch: 'full' },
+  { path: 'profiles', component: ProfilesComponent }
+];
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()]
+export const appConfig = {
+  providers: [provideRouter(routes)],
 };
