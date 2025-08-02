@@ -41,7 +41,6 @@ getProfiles(pageSize: number = 3, pageNumber: number = 1): Observable<PagedResul
   );
 }
 
-
   getProfileById(id: string): Observable<Profile | undefined> {
     return of(this.profiles.find(p => p.id === id));
   }

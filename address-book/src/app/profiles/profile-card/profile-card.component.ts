@@ -18,12 +18,17 @@ import { ImageUpload } from '../profiles/upload-image.model';
 export class ProfileCardComponent implements OnInit{
 
  @Input() profile!: Profile;
+ showInitials = false;
  @Output() imageChanged = new EventEmitter<ImageUpload>();
 
  hovering = false;
 
  ngOnInit(): void {
  }
+
+ ngOnChanges(): void {
+  this.showInitials = false; 
+}
 
  onImageSelected(event: Event,profile:Profile): void {
   const input = event.target as HTMLInputElement;
@@ -44,6 +49,11 @@ export class ProfileCardComponent implements OnInit{
 
     this.imageChanged.emit(upload);
   }
+}
+
+
+onImageError(): void {
+  this.showInitials = true;
 }
 
 getInitials(firstName: string, lastName: string): string {

@@ -1,9 +1,9 @@
 <mat-card *ngIf="profile" class="outlined">
   <div class="profile-card">
     <div class="profile-image-container" (click)="fileInput.click()">
-      <ng-container *ngIf="profile.imageUrl; else initialsFallback">
+      <ng-container *ngIf="!showInitials && profile.imageUrl; else initialsFallback">
         <img class="profile-picture" [src]="profile.imageUrl" alt="Profile image" (error)="profile.imageUrl === null"
-          (mouseover)="hovering = true" (mouseleave)="hovering = false" />
+          (mouseover)="hovering = true" (mouseleave)="hovering = false" (error)="onImageError()" />
       </ng-container>
 
       <ng-template #initialsFallback>
