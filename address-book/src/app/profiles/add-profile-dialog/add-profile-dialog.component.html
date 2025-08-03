@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Add New Profile</h1>
+
+<div class="profile-form" mat-dialog-content [formGroup]="profileForm">
+  <p>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="First Name" formControlName="firstName" />
+      <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">
+        Firstname is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-left: 10px;">
+      <input matInput placeholder="Last Name" formControlName="lastName" />
+      <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">
+        Lastname is required
+      </mat-error>
+    </mat-form-field>
+
+  </p>
+
+
+
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Email" formControlName="email" />
+    <mat-error *ngIf="profileForm.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="profileForm.get('email')?.hasError('email')">
+      Invalid email format
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="margin-left: 10px;">
+    <input matInput placeholder="Cellphone" formControlName="cellphone" />
+    <mat-error *ngIf="profileForm.get('cellphone')?.hasError('required')">
+      Cellphone is required
+    </mat-error>
+  </mat-form-field>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Website" formControlName="website" />
+      <mat-error *ngIf="profileForm.get('website')?.hasError('required')">
+        Website is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <mat-form-field appearance="outline">
+    <textarea matInput placeholder="Enter description" formControlName="description" rows="4"></textarea>
+    <mat-error *ngIf="profileForm.get('description')?.hasError('required')">
+      Website is required
+    </mat-error>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button style="width: 100%;" mat-flat-button color="primary" (click)="onSave()"
+    [disabled]="profileForm.invalid">Save</button>
+</div>

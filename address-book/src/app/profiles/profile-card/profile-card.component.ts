@@ -60,7 +60,7 @@ getInitials(firstName: string, lastName: string): string {
   
    const l = lastName?.[0] || '';
    const f = firstName?.[0] || '';
-  return (l+f).toUpperCase();
+  return (f+l).toUpperCase();
 }
 
 

@@ -1,5 +1,9 @@
 <ng-container *ngIf="profile">
-  <app-profile-card [profile]="profile" (imageChanged)="onImageImageChange($event)"></app-profile-card>/>
+  <div>
+    <app-profile-card [profile]="profile" (imageChanged)="onImageImageChange($event)"></app-profile-card>
+    <button (click)="openAddDialog()" style="margin: 0% 27.5%;" class="create-profile" mat-flat-button
+      color="primary">Create Profile</button>
+  </div>
   <div class="pagination">
     <button mat-button (click)="first()">First</button>
     <button mat-button (click)="prev()">Previous</button>

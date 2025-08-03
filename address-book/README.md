@@ -1,27 +1,69 @@
-# AddressBook
+# Contact Book
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+A responsive Angular 17 application that allows users to browse, create, and manage contact profiles. It features profile picture uploads, fallback to name initials when no image is present, and server-side pagination for smooth navigation through large datasets. Built using Angular Material, SCSS, and clean architectural practices.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Paginated contact browsing** – view profiles page-by-page
+- **Add new contact** – with real-time validation
+- **Upload profile picture** – or fallback to initials if none
+- **Initials avatar fallback** – displays contact initials when `imageUrl` is null
+- **Clean Material UI** – using Angular Material and SCSS
+- **Environment-based API config** – easily switch between dev and prod
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+##  Environment Configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Set your backend API base URL in the environment files:
 
-## Running end-to-end tests
+### `src/environments/environment.ts`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```ts
+export const environment = {
+  production: false,
+  apiBaseUrl: 'https://localhost:5000/api/v1',
+  domain: 'https://localhost:5000',
+};
 
-## Further help
+Getting Started
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Install Dependencies
+npm install
+
+Run the App
+ng serve
+
+ App Functionality Overview
+Profile Display
+Displays profile information using Angular Material cards
+
+imageUrl is used to show profile pictures
+
+If imageUrl is null or broken, initials fallback is shown
+
+Adding a Profile
+Click Add Profile
+
+Opens a Material dialog with a reactive form
+
+Validations are enforced (e.g., required fields, email format)
+
+Uploading a Profile Picture
+Hover over avatar area to trigger upload
+
+Image is sent via multipart/form-data to the API
+
+New image replaces initials fallback on success
+
+Pagination
+Next/Previous buttons to browse paginated results
+
+Author
+Delight Sekhwela
+
