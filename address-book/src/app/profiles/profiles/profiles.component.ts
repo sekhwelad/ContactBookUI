@@ -21,7 +21,7 @@ import { environment } from '../../../environments/environment';
 export class ProfilesComponent {
   profiles: Profile[] = [];
   currentPage = 1;
-  pageSize = 2;
+  pageSize = 10;
   totalPages = 0;
   loading = false;
   currentIndex = 0;
