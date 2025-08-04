@@ -6,7 +6,7 @@ A responsive Angular 17 application that allows users to browse, create, and man
 
 ## Features
 
-- **Paginated contact browsing** – view profiles page-by-page
+- **Paginated contact browsing** – view profiles page-by-page 
 - **Add new contact** – with real-time validation
 - **Upload profile picture** – or fallback to initials if none
 - **Initials avatar fallback** – displays contact initials when `imageUrl` is null
